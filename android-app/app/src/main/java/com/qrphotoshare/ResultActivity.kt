@@ -39,7 +39,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var btnSaveQr: Button
     private lateinit var adContainerViewResult: FrameLayout
     private var adView: AdView? = null
-
+    private var downloadUrl: String = ""
     private var countDownTimer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +56,12 @@ class ResultActivity : AppCompatActivity() {
 
         // loadBannerAd()
 
-        val downloadUrl = intent.getStringExtra("EXTRA_DOWNLOAD_URL") ?: ""
+        val downloadUrlExtra = intent.getStringExtra("EXTRA_DOWNLOAD_URL") ?: ""
+        this.downloadUrl = downloadUrlExtra
         val qrCodeData = intent.getStringExtra("EXTRA_QR_CODE") ?: ""
         val expiresAtString = intent.getStringExtra("EXTRA_EXPIRES_AT") ?: ""
 
-        tvLink.text = downloadUrl
+        tvLink.text = downloadUrlExtra
 
         // Decode Base64 QR Code
         try {
@@ -139,6 +140,7 @@ class ResultActivity : AppCompatActivity() {
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     setDataAndType(contentUri, contentResolver.getType(contentUri))
                     putExtra(Intent.EXTRA_STREAM, contentUri)
+                    putExtra(Intent.EXTRA_TEXT, "Here are some photos for you! Scan this QR or click the link to download: $downloadUrl")
                     type = "image/png"
                 }
                 startActivity(Intent.createChooser(shareIntent, "Share QR Code via..."))

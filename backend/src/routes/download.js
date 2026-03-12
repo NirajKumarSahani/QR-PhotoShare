@@ -4,7 +4,7 @@ const { db, bucket } = require('../config/firebase');
 const { s3Client } = require('../config/aws');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
 const { getDb } = require('../config/localdb');
-const AdmZip = require('adm-zip');
+const archiver = require('archiver');
 const fs = require('fs');
 
 // Get session info (metadata)
@@ -63,7 +63,7 @@ router.get('/info/:sessionId', async (req, res) => {
     }
 });
 
-// Download all files as a ZIP
+// Download all files as a ZIP using streaming
 router.get('/zip/:sessionId', async (req, res) => {
     try {
         const { sessionId } = req.params;
@@ -106,54 +106,67 @@ router.get('/zip/:sessionId', async (req, res) => {
             return res.status(410).send('This link has expired.');
         }
 
-        const zip = new AdmZip();
+        // Create a ZIP archive
+        const archive = archiver('zip', {
+            zlib: { level: 9 } // Sets the compression level.
+        });
 
-        // Helper function to stream S3 to buffer
-        const streamToBuffer = async (stream) => {
-            const chunks = [];
-            for await (const chunk of stream) {
-                chunks.push(chunk);
+        // Set headers for download
+        res.set('Content-Type', 'application/zip');
+        res.set('Content-Disposition', `attachment; filename=QR_Photos_${sessionId.substring(0, 6)}.zip`);
+        // Note: Content-Length cannot be easily set when streaming, so we omit it 
+        // leading to a "chunked" transfer.
+
+        // Catch warnings and errors from archiver
+        archive.on('warning', (err) => {
+            if (err.code === 'ENOENT') {
+                console.warn('Archiver warning:', err);
+            } else {
+                throw err;
             }
-            return Buffer.concat(chunks);
-        };
+        });
 
-        // Download files from Storage and add to zip
+        archive.on('error', (err) => {
+            console.error('Archiver error:', err);
+            res.status(500).send({ error: err.message });
+        });
+
+        // Pipe archive data to the response
+        archive.pipe(res);
+
+        // Append files from Storage
         for (const file of sessionData.files) {
-            let buffer;
-
             if (file.provider === 'aws' && s3Client) {
-                // Fetch from AWS S3
                 const getObjectParams = {
                     Bucket: process.env.AWS_S3_BUCKET_NAME,
                     Key: file.storagePath
                 };
-                const response = await s3Client.send(new GetObjectCommand(getObjectParams));
-                buffer = await streamToBuffer(response.Body);
+                const s3Response = await s3Client.send(new GetObjectCommand(getObjectParams));
+                // Append the stream directly
+                archive.append(s3Response.Body, { name: file.originalName });
             } else if (file.provider === 'firebase') {
-                // Fetch from Firebase Storage
                 const fileRef = bucket.file(file.storagePath);
-                const [downloaded] = await fileRef.download();
-                buffer = downloaded;
+                // Get read stream and append
+                archive.append(fileRef.createReadStream(), { name: file.originalName });
             } else {
-                // Fetch Locally
                 if (fs.existsSync(file.storagePath)) {
-                    buffer = fs.readFileSync(file.storagePath);
+                    archive.append(fs.createReadStream(file.storagePath), { name: file.originalName });
                 } else {
                     console.error(`Local file missing: ${file.storagePath}`);
-                    continue;
                 }
             }
-
-            zip.addFile(file.originalName, buffer);
         }
 
-        const zipBuffer = zip.toBuffer();
+        // Finalize the archive
+        await archive.finalize();
 
-        res.set('Content-Type', 'application/zip');
-        res.set('Content-Disposition', `attachment; filename=QR_Photos_${sessionId.substring(0, 6)}.zip`);
-        res.set('Content-Length', zipBuffer.length);
-
-        res.send(zipBuffer);
+    } catch (error) {
+        console.error('Download Zip Error:', error);
+        if (!res.headersSent) {
+            res.status(500).send('Error generating ZIP file.');
+        }
+    }
+});
 
     } catch (error) {
         console.error('Download Zip Error:', error);
