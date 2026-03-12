@@ -28,6 +28,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.MobileAds
 import com.qrphotoshare.api.ApiClient
 import com.qrphotoshare.api.UriRequestBody
+import com.qrphotoshare.api.ProgressRequestBody
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +38,12 @@ import android.widget.FrameLayout
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +60,9 @@ class MainActivity : AppCompatActivity() {
     private val MAX_SIZE_BYTES = 150L * 1024 * 1024 // 150 MB
     private var adView: AdView? = null
     private var interstitialAd: InterstitialAd? = null
+
+    private val CHANNEL_ID = "upload_notifications"
+    private val NOTIFICATION_ID = 101
 
     // Permission launcher
     private val requestPermissionLauncher = registerForActivityResult(
@@ -82,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         // loadBannerAd()
         // loadInterstitialAd()
         checkAndRequestPermissions()
+        createNotificationChannel()
 
         btnSelect = findViewById(R.id.btnSelect)
         btnUpload = findViewById(R.id.btnUpload)
@@ -197,19 +208,43 @@ class MainActivity : AppCompatActivity() {
     private fun uploadPhotos() {
         if (selectedUris.isEmpty()) return
 
-        // Show progress
+        // 1. Calculate total size
+        var totalSizeBytes = 0L
+        for (uri in selectedUris) {
+            totalSizeBytes += getFileSize(uri)
+        }
+
+        // 2. Setup Progress UI
         progressBar.visibility = View.VISIBLE
-        progressBar.isIndeterminate = true
+        progressBar.isIndeterminate = false
+        progressBar.max = 100
+        progressBar.progress = 0
         tvProgress.visibility = View.VISIBLE
-        tvProgress.text = "Uploading original quality photos... please wait"
+        tvProgress.text = "Starting upload... 0%"
         btnSelect.isEnabled = false
         btnUpload.isEnabled = false
+
+        var totalBytesWritten = 0L
 
         val parts = mutableListOf<MultipartBody.Part>()
         for (uri in selectedUris) {
             val fileName = getFileName(uri)
-            val requestBody = UriRequestBody(contentResolver, uri)
-            parts.add(MultipartBody.Part.createFormData("photos", fileName, requestBody))
+            val uriRequestBody = UriRequestBody(contentResolver, uri)
+            
+            // Wrap in ProgressRequestBody
+            val progressRequestBody = ProgressRequestBody(uriRequestBody) { bytesWritten ->
+                totalBytesWritten += bytesWritten
+                val progress = if (totalSizeBytes > 0) {
+                    (totalBytesWritten * 100 / totalSizeBytes).toInt()
+                } else 0
+                
+                runOnUiThread {
+                    progressBar.progress = progress
+                    tvProgress.text = "Uploading photos... $progress%"
+                }
+            }
+            
+            parts.add(MultipartBody.Part.createFormData("photos", fileName, progressRequestBody))
         }
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -219,6 +254,7 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful && response.body() != null) {
                         val body = response.body()!!
                         if (body.success) {
+                            showUploadSuccessNotification(body.downloadUrl ?: "")
                             navigateToResult(body.downloadUrl, body.qrCode, body.expiresAt ?: "")
                         } else {
                             showError("Upload failed: ${body.error}")
@@ -299,8 +335,53 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+
         if (permissionsToRequest.isNotEmpty()) {
             requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Upload Status"
+            val descriptionText = "Notifications for photo upload results"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun showUploadSuccessNotification(downloadUrl: String) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle("Upload Successful!")
+            .setContentText("Your photos are ready to share. QR code generated.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+
+        try {
+            with(NotificationManagerCompat.from(this)) {
+                if (ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED || Build.VERSION.SDK_INT < 33) {
+                    notify(NOTIFICATION_ID, builder.build())
+                }
+            }
+        } catch (e: SecurityException) {
+            e.printStackTrace()
         }
     }
 }

@@ -20,16 +20,7 @@ class UriRequestBody(
     }
 
     override fun contentLength(): Long {
-        var size: Long = -1
-        contentResolver.query(uri, arrayOf(OpenableColumns.SIZE), null, null, null)?.use { cursor ->
-            if (cursor.moveToFirst()) {
-                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
-                if (sizeIndex != -1) {
-                    size = cursor.getLong(sizeIndex)
-                }
-            }
-        }
-        return size
+        return -1L
     }
 
     override fun writeTo(sink: BufferedSink) {
