@@ -168,10 +168,4 @@ router.get('/zip/:sessionId', async (req, res) => {
     }
 });
 
-    } catch (error) {
-        console.error('Download Zip Error:', error);
-        res.status(500).send('Error generating ZIP file.');
-    }
-});
-
 module.exports = router;
