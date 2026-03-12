@@ -1,0 +1,306 @@
+package com.qrphotoshare
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.provider.OpenableColumns
+import android.view.View
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.provider.MediaStore
+import java.io.File
+import java.io.FileOutputStream
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.asRequestBody
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import android.content.pm.PackageManager
+import android.os.Build
+import android.Manifest
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.MobileAds
+import com.qrphotoshare.api.ApiClient
+import com.qrphotoshare.api.UriRequestBody
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MultipartBody
+import android.widget.FrameLayout
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var btnSelect: Button
+    private lateinit var btnUpload: Button
+    private lateinit var tvSelectedInfo: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvProgress: TextView
+    private lateinit var adContainerView: FrameLayout
+    private lateinit var adContainerViewMiddle: FrameLayout
+    private lateinit var adContainerViewTop: FrameLayout
+
+    private var selectedUris = listOf<Uri>()
+    private val MAX_SIZE_BYTES = 150L * 1024 * 1024 // 150 MB
+    private var adView: AdView? = null
+    private var interstitialAd: InterstitialAd? = null
+
+    // Permission launcher
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        val granted = permissions.entries.all { it.value }
+        if (!granted) {
+            Toast.makeText(this, "Permissions are required to share photos.", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    // Photo picker launcher
+    private val pickImages = registerForActivityResult(
+        ActivityResultContracts.GetMultipleContents()
+    ) { uris: List<Uri> ->
+        if (uris.isNotEmpty()) {
+            handleSelectedUris(uris)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize AdMob
+        MobileAds.initialize(this) {}
+        // loadBannerAd()
+        // loadInterstitialAd()
+        checkAndRequestPermissions()
+
+        btnSelect = findViewById(R.id.btnSelect)
+        btnUpload = findViewById(R.id.btnUpload)
+        tvSelectedInfo = findViewById(R.id.tvSelectedInfo)
+        progressBar = findViewById(R.id.progressBar)
+        tvProgress = findViewById(R.id.tvProgress)
+
+        btnSelect.setOnClickListener {
+            // Launch photo picker
+            pickImages.launch("image/*")
+        }
+
+        btnUpload.setOnClickListener {
+            if (selectedUris.isNotEmpty()) {
+                uploadPhotos()
+            }
+        }
+    }
+
+    private fun loadBannerAd() {
+        adContainerView = findViewById(R.id.adContainerView)
+        adContainerViewMiddle = findViewById(R.id.adContainerViewMiddle)
+        adContainerViewTop = findViewById(R.id.adContainerViewTop)
+
+        // Top Ad
+        val adViewTop = AdView(this).apply {
+            setAdSize(AdSize.BANNER)
+            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Test ID
+        }
+        adContainerViewTop.addView(adViewTop)
+        adViewTop.loadAd(AdRequest.Builder().build())
+
+        // Bottom Ad
+        val adViewBottom = AdView(this).apply {
+            setAdSize(AdSize.BANNER)
+            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        }
+        adContainerView.addView(adViewBottom)
+        adViewBottom.loadAd(AdRequest.Builder().build())
+
+        // Middle Ad
+        val adViewMiddle = AdView(this).apply {
+            setAdSize(AdSize.MEDIUM_RECTANGLE)
+            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Test ID
+        }
+        adContainerViewMiddle.addView(adViewMiddle)
+        adViewMiddle.loadAd(AdRequest.Builder().build())
+        
+        this.adView = adViewBottom // Keep reference for cleanup if needed
+    }
+
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                interstitialAd = null
+            }
+            override fun onAdLoaded(ad: InterstitialAd) {
+                interstitialAd = ad
+            }
+        })
+    }
+
+    private fun handleSelectedUris(uris: List<Uri>) {
+        var totalSize = 0L
+        for (uri in uris) {
+            totalSize += getFileSize(uri)
+        }
+
+        if (totalSize > MAX_SIZE_BYTES) {
+            Toast.makeText(this, "Total size exceeds 100MB!", Toast.LENGTH_LONG).show()
+            selectedUris = emptyList()
+            tvSelectedInfo.text = "Selected size too large."
+            btnUpload.isEnabled = false
+        } else {
+            selectedUris = uris
+            tvSelectedInfo.text = "${uris.size} photos selected (${formatBytes(totalSize)})"
+            btnUpload.isEnabled = true
+        }
+    }
+
+    private fun getFileSize(uri: Uri): Long {
+        var size: Long = 0
+        contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+                if (sizeIndex != -1) {
+                    size = cursor.getLong(sizeIndex)
+                }
+            }
+        }
+        return size
+    }
+
+    private fun formatBytes(bytes: Long): String {
+        val mb = bytes / (1024.0 * 1024.0)
+        return String.format("%.2f MB", mb)
+    }
+
+    private fun getFileName(uri: Uri): String {
+        var name = "photo.jpg"
+        contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (nameIndex != -1) {
+                    name = cursor.getString(nameIndex)
+                }
+            }
+        }
+        return name
+    }
+
+    private fun uploadPhotos() {
+        if (selectedUris.isEmpty()) return
+
+        // Show progress
+        progressBar.visibility = View.VISIBLE
+        progressBar.isIndeterminate = true
+        tvProgress.visibility = View.VISIBLE
+        tvProgress.text = "Uploading original quality photos... please wait"
+        btnSelect.isEnabled = false
+        btnUpload.isEnabled = false
+
+        val parts = mutableListOf<MultipartBody.Part>()
+        for (uri in selectedUris) {
+            val fileName = getFileName(uri)
+            val requestBody = UriRequestBody(contentResolver, uri)
+            parts.add(MultipartBody.Part.createFormData("photos", fileName, requestBody))
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = ApiClient.apiService.uploadPhotos(parts)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val body = response.body()!!
+                        if (body.success) {
+                            navigateToResult(body.downloadUrl, body.qrCode, body.expiresAt ?: "")
+                        } else {
+                            showError("Upload failed: ${body.error}")
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        showError("Server error: ${response.code()} \n$errorBody")
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    showError("Network error: ${e.localizedMessage}")
+                }
+            }
+        }
+    }
+    
+
+    private fun navigateToResult(downloadUrl: String?, qrCode: String?, expiresAt: String) {
+        
+        fun doNav() {
+            progressBar.visibility = View.GONE
+            tvProgress.visibility = View.GONE
+            btnSelect.isEnabled = true
+            
+            // Clear selections
+            selectedUris = emptyList()
+            tvSelectedInfo.text = "No photos selected"
+            btnUpload.isEnabled = false
+
+            val intent = Intent(this@MainActivity, ResultActivity::class.java).apply {
+                putExtra("EXTRA_DOWNLOAD_URL", downloadUrl)
+                putExtra("EXTRA_QR_CODE", qrCode)
+                putExtra("EXTRA_EXPIRES_AT", expiresAt) // We will map the sessionId parameter here for now if the ApiService wasn't updated
+            }
+            startActivity(intent)
+        }
+
+        // Show ad if loaded before navigating
+        if (interstitialAd != null) {
+            interstitialAd?.show(this)
+            // Reload for next time
+            loadInterstitialAd()
+            doNav() 
+        } else {
+            doNav()
+        }
+    }
+
+    private fun showError(message: String) {
+        progressBar.visibility = View.GONE
+        tvProgress.visibility = View.GONE
+        btnSelect.isEnabled = true
+        btnUpload.isEnabled = true
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun checkAndRequestPermissions() {
+        val permissionsToRequest = mutableListOf<String>()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_MEDIA_IMAGES)
+            }
+        } else {
+            // Android 12 and below
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+
+        // For downloading QR code (saving to gallery)
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            // Android 9 and below need WRITE_EXTERNAL_STORAGE
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
+            requestPermissionLauncher.launch(permissionsToRequest.toTypedArray())
+        }
+    }
+}

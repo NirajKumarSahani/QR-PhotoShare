@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR PhotoShare - Download Files</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-8 text-center" id="main-card">
+        
+        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+            </svg>
+        </div>
+
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Download Photos</h1>
+        
+        <div id="loading" class="py-8">
+            <svg class="animate-spin h-8 w-8 text-blue-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-gray-500 mt-4">Loading session...</p>
+        </div>
+
+        <div id="content" class="hidden">
+            <div class="bg-gray-50 rounded-lg p-4 mb-6 text-left">
+                <div class="flex justify-between flex-row items-center border-b border-gray-200 pb-2 mb-2">
+                    <span class="text-gray-600">Files:</span>
+                    <span id="file-count" class="font-semibold text-gray-800">0</span>
+                </div>
+                <div class="flex justify-between flex-row items-center border-b border-gray-200 pb-2 mb-2">
+                    <span class="text-gray-600">Total Size:</span>
+                    <span id="total-size" class="font-semibold text-gray-800">0 MB</span>
+                </div>
+                <div class="flex justify-between flex-row items-center">
+                    <span class="text-gray-600">Expires At:</span>
+                    <span id="expires-at" class="font-semibold text-red-500">Loading...</span>
+                </div>
+            </div>
+
+            <button id="download-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Download All (ZIP)
+            </button>
+        </div>
+
+        <div id="error-view" class="hidden py-8">
+            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Link Expired or Invalid</h2>
+            <p id="error-message" class="text-gray-500">The photos you are looking for are no longer available.</p>
+        </div>
+        
+        <!-- Ad Slot -->
+        <div class="mt-8 border-t border-gray-100 pt-6">
+            <div class="bg-gray-100 rounded-lg p-2 text-xs text-gray-400 uppercase tracking-widest">
+                Advertisement
+                <div class="h-max-250 bg-gray-200 mt-2 flex items-center justify-center text-gray-400 py-10 rounded">
+                    <!-- Insert Google AdSense Code Here -->
+                    Ad Placement Space
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Extract fileId from URL (e.g., /view/1234-abcd)
+            const pathParts = window.location.pathname.split('/');
+            const sessionId = pathParts[pathParts.length - 1];
+
+            const loadingEl = document.getElementById('loading');
+            const contentEl = document.getElementById('content');
+            const errorViewEl = document.getElementById('error-view');
+            const errorMessageEl = document.getElementById('error-message');
+
+            if (!sessionId || sessionId === 'view') {
+                showError("Invalid link.");
+                return;
+            }
+
+            try {
+                // Fetch session info
+                const response = await fetch(`/api/download/info/${sessionId}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Update UI
+                    document.getElementById('file-count').innerText = data.fileCount;
+                    document.getElementById('total-size').innerText = formatBytes(data.totalSize);
+                    
+                    const expiryDate = new Date(data.expiresAt);
+                    document.getElementById('expires-at').innerText = expiryDate.toLocaleString();
+
+                    // Setup download button
+                    const downloadBtn = document.getElementById('download-btn');
+                    downloadBtn.onclick = () => {
+                        window.location.href = `/api/download/zip/${sessionId}`;
+                    };
+
+                    // Show content
+                    loadingEl.classList.add('hidden');
+                    contentEl.classList.remove('hidden');
+                } else {
+                    showError(data.error || "Session not found.");
+                }
+            } catch (error) {
+                console.error("Error fetching session info:", error);
+                showError("A network error occurred.");
+            }
+
+            function showError(msg) {
+                loadingEl.classList.add('hidden');
+                contentEl.classList.add('hidden');
+                errorViewEl.classList.remove('hidden');
+                errorMessageEl.innerText = msg;
+            }
+
+            function formatBytes(bytes, decimals = 2) {
+                if (!+bytes) return '0 Bytes';
+                const k = 1024;
+                const dm = decimals < 0 ? 0 : decimals;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+            }
+        });
+    </script>
+</body>
+</html>
