@@ -3,6 +3,7 @@ const router = express.Router();
 const { db, bucket } = require('../config/firebase');
 const { s3Client } = require('../config/aws');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
+const { getDb } = require('../config/localdb');
 const AdmZip = require('adm-zip');
 const fs = require('fs');
 
@@ -10,27 +11,50 @@ const fs = require('fs');
 router.get('/info/:sessionId', async (req, res) => {
     try {
         const { sessionId } = req.params;
-        const docRef = db.collection('shared_sessions').doc(sessionId);
-        const doc = await docRef.get();
+        let sessionData = null;
+        let fromFirestore = false;
 
-        if (!doc.exists) {
+        // 1. Try Firebase Firestore
+        if (db) {
+            try {
+                const docRef = db.collection('shared_sessions').doc(sessionId);
+                const doc = await docRef.get();
+                if (doc.exists) {
+                    sessionData = doc.data();
+                    fromFirestore = true;
+                }
+            } catch (err) {
+                console.warn(`Firestore info error for ${sessionId}:`, err.message);
+            }
+        }
+
+        // 2. Fallback to Local DB
+        if (!sessionData) {
+            try {
+                const localDb = getDb();
+                sessionData = localDb.sessions.find(s => s.sessionId === sessionId);
+            } catch (err) {
+                console.error('Local DB info error:', err);
+            }
+        }
+
+        if (!sessionData) {
             return res.status(404).json({ error: 'Session not found or has expired.' });
         }
 
-        const data = doc.data();
-
         // Check if expired
         const now = new Date();
-        const expiresAt = data.expiresAt.toDate();
+        const expiresAt = fromFirestore ? sessionData.expiresAt.toDate() : new Date(sessionData.expiresAt);
+        
         if (now > expiresAt) {
             return res.status(410).json({ error: 'This link has expired.' });
         }
 
         res.json({
             success: true,
-            fileCount: data.fileCount,
-            totalSize: data.totalSize,
-            expiresAt: data.expiresAt
+            fileCount: sessionData.fileCount,
+            totalSize: sessionData.totalSize,
+            expiresAt: expiresAt
         });
 
     } catch (error) {
@@ -43,18 +67,41 @@ router.get('/info/:sessionId', async (req, res) => {
 router.get('/zip/:sessionId', async (req, res) => {
     try {
         const { sessionId } = req.params;
-        const docRef = db.collection('shared_sessions').doc(sessionId);
-        const doc = await docRef.get();
+        let sessionData = null;
+        let fromFirestore = false;
 
-        if (!doc.exists) {
+        // 1. Try Firebase Firestore
+        if (db) {
+            try {
+                const docRef = db.collection('shared_sessions').doc(sessionId);
+                const doc = await docRef.get();
+                if (doc.exists) {
+                    sessionData = doc.data();
+                    fromFirestore = true;
+                }
+            } catch (err) {
+                console.warn(`Firestore zip error for ${sessionId}:`, err.message);
+            }
+        }
+
+        // 2. Fallback to Local DB
+        if (!sessionData) {
+            try {
+                const localDb = getDb();
+                sessionData = localDb.sessions.find(s => s.sessionId === sessionId);
+            } catch (err) {
+                console.error('Local DB zip error:', err);
+            }
+        }
+
+        if (!sessionData) {
             return res.status(404).send('Session not found or has expired.');
         }
 
-        const data = doc.data();
-
         // Check if expired
         const now = new Date();
-        const expiresAt = data.expiresAt.toDate();
+        const expiresAt = fromFirestore ? sessionData.expiresAt.toDate() : new Date(sessionData.expiresAt);
+        
         if (now > expiresAt) {
             return res.status(410).send('This link has expired.');
         }
@@ -71,7 +118,7 @@ router.get('/zip/:sessionId', async (req, res) => {
         };
 
         // Download files from Storage and add to zip
-        for (const file of data.files) {
+        for (const file of sessionData.files) {
             let buffer;
 
             if (file.provider === 'aws' && s3Client) {
