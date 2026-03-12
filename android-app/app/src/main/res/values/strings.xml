@@ -7,4 +7,7 @@
     <string name="copy">Copy</string>
     <string name="share">Share</string>
     <string name="expires_in">Expires in 12 hours</string>
+    <string name="menu_share">Share App</string>
+    <string name="menu_rate">Rate App</string>
+    <string name="menu_privacy">Privacy Policy</string>
 </resources>

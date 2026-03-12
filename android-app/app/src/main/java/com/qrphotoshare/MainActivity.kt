@@ -94,6 +94,9 @@ class MainActivity : AppCompatActivity() {
         checkAndRequestPermissions()
         createNotificationChannel()
 
+        val toolbar: com.google.android.material.appbar.MaterialToolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         btnSelect = findViewById(R.id.btnSelect)
         btnUpload = findViewById(R.id.btnUpload)
         tvSelectedInfo = findViewById(R.id.tvSelectedInfo)
@@ -112,6 +115,52 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                shareApp()
+                true
+            }
+            R.id.action_rate -> {
+                rateApp()
+                true
+            }
+            R.id.action_privacy -> {
+                openPrivacyPolicy()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun shareApp() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, "Check out QR PhotoShare to share your photos instantly via QR: https://play.google.com/store/apps/details?id=$packageName")
+        }
+        startActivity(Intent.createChooser(shareIntent, "Share App via..."))
+    }
+
+    private fun rateApp() {
+        val uri = Uri.parse("market://details?id=$packageName")
+        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(goToMarket)
+        } catch (e: Exception) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+        }
+    }
+
+    private fun openPrivacyPolicy() {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://qr-photoshare.onrender.com/privacy.html"))
+        startActivity(browserIntent)
+    }
+
     private fun loadBannerAd() {
         adContainerView = findViewById(R.id.adContainerView)
         adContainerViewMiddle = findViewById(R.id.adContainerViewMiddle)
@@ -120,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         // Top Ad
         val adViewTop = AdView(this).apply {
             setAdSize(AdSize.BANNER)
-            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Test ID
+            adUnitId = "ca-app-pub-8703883257933057/2072537369"
         }
         adContainerViewTop.addView(adViewTop)
         adViewTop.loadAd(AdRequest.Builder().build())
@@ -128,7 +177,7 @@ class MainActivity : AppCompatActivity() {
         // Bottom Ad
         val adViewBottom = AdView(this).apply {
             setAdSize(AdSize.BANNER)
-            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+            adUnitId = "ca-app-pub-8703883257933057/2072537369"
         }
         adContainerView.addView(adViewBottom)
         adViewBottom.loadAd(AdRequest.Builder().build())
@@ -136,7 +185,7 @@ class MainActivity : AppCompatActivity() {
         // Middle Ad
         val adViewMiddle = AdView(this).apply {
             setAdSize(AdSize.MEDIUM_RECTANGLE)
-            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Test ID
+            adUnitId = "ca-app-pub-8703883257933057/2072537369"
         }
         adContainerViewMiddle.addView(adViewMiddle)
         adViewMiddle.loadAd(AdRequest.Builder().build())
@@ -146,7 +195,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadInterstitialAd() {
         val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        // Production Interstitial ID
+        InterstitialAd.load(this, "ca-app-pub-8703883257933057/9244779946", adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 interstitialAd = null
             }

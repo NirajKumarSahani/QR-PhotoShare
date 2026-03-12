@@ -194,8 +194,8 @@ class ResultActivity : AppCompatActivity() {
         adContainerViewResult = findViewById(R.id.adContainerViewResult)
         adView = AdView(this).apply {
             setAdSize(AdSize.BANNER)
-            // Test Ad Unit ID
-            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+            // Production Banner ID
+            adUnitId = "ca-app-pub-8703883257933057/2072537369"
         }
         adContainerViewResult.addView(adView)
         val adRequest = AdRequest.Builder().build()

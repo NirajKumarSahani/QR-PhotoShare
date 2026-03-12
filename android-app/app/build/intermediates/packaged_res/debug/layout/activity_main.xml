@@ -7,26 +7,22 @@
     android:padding="24dp"
     android:background="@drawable/bg_gradient">
 
+    <!-- Toolbar for Settings Menu -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        app:titleCentered="true" />
+
     <!-- Top Ad Container -->
     <FrameLayout
         android:id="@+id/adContainerViewTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:shadowColor="#40000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4"/>
 
     <TextView
         android:id="@+id/tvSelectedInfo"
