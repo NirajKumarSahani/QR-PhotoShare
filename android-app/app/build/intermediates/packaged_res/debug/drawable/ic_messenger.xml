@@ -1,9 +1,26 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-  <path
-      android:fillColor="#0084FF"
-      android:pathData="M12,2c-5.52,0 -10,4.18 -10,9.33c0,2.94 1.44,5.55 3.69,7.24V22l3.29,-1.81c0.97,0.27 2.01,0.42 3.02,0.42c5.52,0 10,-4.18 10,-9.33c0,-5.15 -4.48,-9.33 -10,-9.33zM13,14.5l-2.5,-2.5L6,14.5l5,-5l2.5,2.5L18,9.5l-5,5z" />
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- White Rounded Square Background -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8,0 L40,0 C44.4,0 48,3.6 48,8 L48,40 C48,44.4 44.4,48 40,48 L8,48 C3.6,48 0,44.4 0,40 L0,8 C0,3.6 3.6,0 8,0 Z" />
+    <!-- Messenger Gradient Logo centered -->
+    <path
+        android:pathData="M24,11 C17.38,11 12,16.02 12,22.2 C12,25.73 13.73,28.86 16.43,30.88 V35.33 L20.38,33.16 C21.54,33.48 22.79,33.66 24,33.66 C30.62,33.66 36,28.64 36,22.46 C36,16.28 30.62,11.26 24,11.26 V11 Z M25.2,25.2 L22.2,22.2 L16.8,25.2 L22.8,19.2 L25.8,22.2 L31.2,19.2 L25.2,25.2 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="36"
+                android:endY="11"
+                android:startX="12"
+                android:startY="35"
+                android:type="linear">
+                <item android:color="#0084FF" android:offset="0" />
+                <item android:color="#A033FF" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
 </vector>
