@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,6 +39,21 @@ public final class ActivityResultBinding implements ViewBinding {
   public final Button btnShareQr;
 
   @NonNull
+  public final ImageButton ibInstagram;
+
+  @NonNull
+  public final ImageButton ibMessenger;
+
+  @NonNull
+  public final ImageButton ibSnapchat;
+
+  @NonNull
+  public final ImageButton ibTelegram;
+
+  @NonNull
+  public final ImageButton ibWhatsApp;
+
+  @NonNull
   public final ImageView ivQrCode;
 
   @NonNull
@@ -49,13 +65,21 @@ public final class ActivityResultBinding implements ViewBinding {
   private ActivityResultBinding(@NonNull LinearLayout rootView,
       @NonNull FrameLayout adContainerViewResult, @NonNull Button btnCopy,
       @NonNull Button btnSaveQr, @NonNull Button btnShare, @NonNull Button btnShareQr,
-      @NonNull ImageView ivQrCode, @NonNull TextView tvExpiry, @NonNull TextView tvLink) {
+      @NonNull ImageButton ibInstagram, @NonNull ImageButton ibMessenger,
+      @NonNull ImageButton ibSnapchat, @NonNull ImageButton ibTelegram,
+      @NonNull ImageButton ibWhatsApp, @NonNull ImageView ivQrCode, @NonNull TextView tvExpiry,
+      @NonNull TextView tvLink) {
     this.rootView = rootView;
     this.adContainerViewResult = adContainerViewResult;
     this.btnCopy = btnCopy;
     this.btnSaveQr = btnSaveQr;
     this.btnShare = btnShare;
     this.btnShareQr = btnShareQr;
+    this.ibInstagram = ibInstagram;
+    this.ibMessenger = ibMessenger;
+    this.ibSnapchat = ibSnapchat;
+    this.ibTelegram = ibTelegram;
+    this.ibWhatsApp = ibWhatsApp;
     this.ivQrCode = ivQrCode;
     this.tvExpiry = tvExpiry;
     this.tvLink = tvLink;
@@ -118,6 +142,36 @@ public final class ActivityResultBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ibInstagram;
+      ImageButton ibInstagram = ViewBindings.findChildViewById(rootView, id);
+      if (ibInstagram == null) {
+        break missingId;
+      }
+
+      id = R.id.ibMessenger;
+      ImageButton ibMessenger = ViewBindings.findChildViewById(rootView, id);
+      if (ibMessenger == null) {
+        break missingId;
+      }
+
+      id = R.id.ibSnapchat;
+      ImageButton ibSnapchat = ViewBindings.findChildViewById(rootView, id);
+      if (ibSnapchat == null) {
+        break missingId;
+      }
+
+      id = R.id.ibTelegram;
+      ImageButton ibTelegram = ViewBindings.findChildViewById(rootView, id);
+      if (ibTelegram == null) {
+        break missingId;
+      }
+
+      id = R.id.ibWhatsApp;
+      ImageButton ibWhatsApp = ViewBindings.findChildViewById(rootView, id);
+      if (ibWhatsApp == null) {
+        break missingId;
+      }
+
       id = R.id.ivQrCode;
       ImageView ivQrCode = ViewBindings.findChildViewById(rootView, id);
       if (ivQrCode == null) {
@@ -137,7 +191,8 @@ public final class ActivityResultBinding implements ViewBinding {
       }
 
       return new ActivityResultBinding((LinearLayout) rootView, adContainerViewResult, btnCopy,
-          btnSaveQr, btnShare, btnShareQr, ivQrCode, tvExpiry, tvLink);
+          btnSaveQr, btnShare, btnShareQr, ibInstagram, ibMessenger, ibSnapchat, ibTelegram,
+          ibWhatsApp, ivQrCode, tvExpiry, tvLink);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

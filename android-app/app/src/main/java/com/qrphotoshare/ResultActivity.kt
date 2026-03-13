@@ -37,10 +37,16 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var btnShare: Button
     private lateinit var btnShareQr: Button
     private lateinit var btnSaveQr: Button
+    private lateinit var ibWhatsApp: android.widget.ImageButton
+    private lateinit var ibInstagram: android.widget.ImageButton
+    private lateinit var ibTelegram: android.widget.ImageButton
+    private lateinit var ibMessenger: android.widget.ImageButton
+    private lateinit var ibSnapchat: android.widget.ImageButton
     private lateinit var adContainerViewResult: FrameLayout
     private var adView: AdView? = null
     private var downloadUrl: String = ""
     private var countDownTimer: CountDownTimer? = null
+    private var autoShareAction: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +59,12 @@ class ResultActivity : AppCompatActivity() {
         btnShare = findViewById(R.id.btnShare)
         btnShareQr = findViewById(R.id.btnShareQr)
         btnSaveQr = findViewById(R.id.btnSaveQr)
+
+        ibWhatsApp = findViewById(R.id.ibWhatsApp)
+        ibInstagram = findViewById(R.id.ibInstagram)
+        ibTelegram = findViewById(R.id.ibTelegram)
+        ibMessenger = findViewById(R.id.ibMessenger)
+        ibSnapchat = findViewById(R.id.ibSnapchat)
 
         // loadBannerAd()
 
@@ -112,6 +124,90 @@ class ResultActivity : AppCompatActivity() {
 
         btnSaveQr.setOnClickListener {
             saveQrCode()
+        }
+
+        ibWhatsApp.setOnClickListener { shareToPackage("com.whatsapp") }
+        ibInstagram.setOnClickListener { shareToPackage("com.instagram.android") }
+        ibTelegram.setOnClickListener { shareToPackage("org.telegram.messenger") }
+        ibMessenger.setOnClickListener { shareToPackage("com.facebook.orca") }
+        ibSnapchat.setOnClickListener { shareToPackage("com.snapchat.android") }
+
+        autoShareAction = intent.getStringExtra("EXTRA_AUTO_SHARE_ACTION")
+
+        // Execute auto-share with a small delay to ensure UI is ready
+        if (autoShareAction != null) {
+            ivQrCode.postDelayed({
+                executeAutoShare()
+            }, 1000)
+        }
+    }
+
+    private fun executeAutoShare() {
+        when (autoShareAction) {
+            "WHATSAPP" -> shareToPackage("com.whatsapp")
+            "INSTAGRAM" -> shareToPackage("com.instagram.android")
+            "TELEGRAM" -> shareToPackage("org.telegram.messenger")
+            "MESSENGER" -> shareToPackage("com.facebook.orca")
+            "SNAPCHAT" -> shareToPackage("com.snapchat.android")
+            "LINK" -> {
+                val shareIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "Here are some photos for you! Download them before they expire: $downloadUrl")
+                    type = "text/plain"
+                }
+                startActivity(Intent.createChooser(shareIntent, "Share Link via..."))
+            }
+            "QR" -> shareQrCode()
+            "COPY" -> {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("Download Link", downloadUrl)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(this, "Link auto-copied to clipboard", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun shareToPackage(packageName: String) {
+        val drawable = ivQrCode.drawable as? android.graphics.drawable.BitmapDrawable ?: return
+        val bitmap = drawable.bitmap
+
+        try {
+            val cachePath = java.io.File(cacheDir, "shared_images")
+            cachePath.mkdirs()
+            val file = java.io.File(cachePath, "qr_code_share.png")
+            val fileOutStream = java.io.FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutStream)
+            fileOutStream.flush()
+            fileOutStream.close()
+
+            val contentUri = androidx.core.content.FileProvider.getUriForFile(
+                this,
+                "${this.packageName}.fileprovider",
+                file
+            )
+
+            if (contentUri != null) {
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "image/png"
+                    putExtra(Intent.EXTRA_STREAM, contentUri)
+                    putExtra(Intent.EXTRA_TEXT, "Here are some photos for you! Scan this QR or click the link to download: $downloadUrl")
+                    setPackage(packageName)
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+
+                // Check if package is installed
+                try {
+                    packageManager.getPackageInfo(packageName, 0)
+                    startActivity(intent)
+                } catch (e: android.content.pm.PackageManager.NameNotFoundException) {
+                    Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show()
+                    // Fallback to chooser if specific package fails
+                    startActivity(Intent.createChooser(intent.apply { setPackage(null) }, "Share via..."))
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Failed to share", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private val MAX_SIZE_BYTES = 150L * 1024 * 1024 // 150 MB
     private var adView: AdView? = null
     private var interstitialAd: InterstitialAd? = null
+    private var autoShareAction: String? = null // "WHATSAPP", "INSTAGRAM", "TELEGRAM", "MESSENGER", "SNAPCHAT", "LINK", "QR", "COPY", null
 
     private val CHANNEL_ID = "upload_notifications"
     private val NOTIFICATION_ID = 101
@@ -110,9 +111,66 @@ class MainActivity : AppCompatActivity() {
 
         btnUpload.setOnClickListener {
             if (selectedUris.isNotEmpty()) {
-                uploadPhotos()
+                showAutoShareSelection()
             }
         }
+    }
+
+    private fun showAutoShareSelection() {
+        val dialog = com.google.android.material.bottomsheet.BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.layout_auto_share_sheet, null)
+        dialog.setContentView(view)
+
+        // Social Icons
+        view.findViewById<android.widget.ImageButton>(R.id.ibAutoWhatsApp).setOnClickListener {
+            autoShareAction = "WHATSAPP"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.ImageButton>(R.id.ibAutoInstagram).setOnClickListener {
+            autoShareAction = "INSTAGRAM"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.ImageButton>(R.id.ibAutoTelegram).setOnClickListener {
+            autoShareAction = "TELEGRAM"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.ImageButton>(R.id.ibAutoMessenger).setOnClickListener {
+            autoShareAction = "MESSENGER"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.ImageButton>(R.id.ibAutoSnapchat).setOnClickListener {
+            autoShareAction = "SNAPCHAT"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+
+        // Action Buttons
+        view.findViewById<android.widget.Button>(R.id.btnAutoShareLink).setOnClickListener {
+            autoShareAction = "LINK"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.Button>(R.id.btnAutoShareQr).setOnClickListener {
+            autoShareAction = "QR"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.Button>(R.id.btnAutoCopyLink).setOnClickListener {
+            autoShareAction = "COPY"
+            dialog.dismiss()
+            uploadPhotos()
+        }
+        view.findViewById<android.widget.Button>(R.id.btnNoAutoShare).setOnClickListener {
+            autoShareAction = null
+            dialog.dismiss()
+            uploadPhotos()
+        }
+
+        dialog.show()
     }
 
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
@@ -338,7 +396,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, ResultActivity::class.java).apply {
                 putExtra("EXTRA_DOWNLOAD_URL", downloadUrl)
                 putExtra("EXTRA_QR_CODE", qrCode)
-                putExtra("EXTRA_EXPIRES_AT", expiresAt) // We will map the sessionId parameter here for now if the ApiService wasn't updated
+                putExtra("EXTRA_EXPIRES_AT", expiresAt)
+                putExtra("EXTRA_AUTO_SHARE_ACTION", autoShareAction)
             }
             startActivity(intent)
         }

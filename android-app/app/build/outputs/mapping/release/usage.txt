@@ -59929,14 +59929,12 @@ kotlin.collections.ArrayAsCollection:
 kotlin.collections.ArrayDeque$Companion
 kotlin.collections.ArrayDeque:
     public static final com.google.gson.stream.JsonReader$1 Companion
-    public static void addFirst()
     public static void copyElements()
     public final int decremented(int)
     public final int getSize()
     public final int negativeMod(int)
     public final java.lang.Object removeAt()
     public static java.lang.Object removeFirstOrNull()
-    public static java.lang.Object removeLast()
 kotlin.collections.ArraysKt
 kotlin.collections.ArraysKt__ArraysJVMKt
 kotlin.collections.ArraysKt__ArraysKt
