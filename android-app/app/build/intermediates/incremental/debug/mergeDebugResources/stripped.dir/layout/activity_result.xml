@@ -122,6 +122,7 @@
             android:src="@drawable/ic_whatsapp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
+            android:padding="8dp"
             android:layout_marginEnd="16dp" />
 
         <ImageButton
@@ -131,6 +132,7 @@
             android:src="@drawable/ic_instagram"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
+            android:padding="8dp"
             android:layout_marginEnd="16dp" />
 
         <ImageButton
@@ -140,6 +142,7 @@
             android:src="@drawable/ic_telegram"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
+            android:padding="8dp"
             android:layout_marginEnd="16dp" />
 
         <ImageButton
@@ -149,6 +152,7 @@
             android:src="@drawable/ic_messenger"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
+            android:padding="8dp"
             android:layout_marginEnd="16dp" />
 
         <ImageButton
@@ -157,7 +161,8 @@
             android:layout_height="48dp"
             android:src="@drawable/ic_snapchat"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:padding="8dp" />
 
     </LinearLayout>
 
