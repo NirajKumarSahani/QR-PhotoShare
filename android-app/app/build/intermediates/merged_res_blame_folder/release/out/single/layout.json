@@ -4,6 +4,10 @@
         "source": "com.qrphotoshare.app-main-47:/layout/activity_main.xml"
     },
     {
+        "merged": "com.qrphotoshare.app-mergeReleaseResources-44:/layout/layout_auto_share_sheet.xml",
+        "source": "com.qrphotoshare.app-main-47:/layout/layout_auto_share_sheet.xml"
+    },
+    {
         "merged": "com.qrphotoshare.app-mergeReleaseResources-44:/layout/activity_splash.xml",
         "source": "com.qrphotoshare.app-main-47:/layout/activity_splash.xml"
     },

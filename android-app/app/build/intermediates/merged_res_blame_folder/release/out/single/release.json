@@ -1452,6 +1452,10 @@
         "source": "com.qrphotoshare.app-material-1.10.0-2:/layout/mtrl_alert_select_dialog_multichoice.xml"
     },
     {
+        "merged": "com.qrphotoshare.app-merged_res-46:/drawable_ic_telegram.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/drawable/ic_telegram.xml"
+    },
+    {
         "merged": "com.qrphotoshare.app-merged_res-46:/drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "com.qrphotoshare.app-appcompat-1.6.1-8:/drawable-xhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
     },
@@ -1562,6 +1566,10 @@
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/drawable_mtrl_checkbox_button_icon_unchecked_checked.xml.flat",
         "source": "com.qrphotoshare.app-material-1.10.0-2:/drawable/mtrl_checkbox_button_icon_unchecked_checked.xml"
+    },
+    {
+        "merged": "com.qrphotoshare.app-merged_res-46:/drawable_ic_messenger.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/drawable/ic_messenger.xml"
     },
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/drawable-xxxhdpi-v4_ic_call_decline.png.flat",
@@ -1826,6 +1834,10 @@
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/layout_design_layout_tab_icon.xml.flat",
         "source": "com.qrphotoshare.app-material-1.10.0-2:/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "com.qrphotoshare.app-merged_res-46:/drawable_ic_snapchat.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/drawable/ic_snapchat.xml"
     },
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/layout_mtrl_picker_text_input_date.xml.flat",
@@ -2296,6 +2308,10 @@
         "source": "com.qrphotoshare.app-material-1.10.0-2:/anim-v21/design_bottom_sheet_slide_out.xml"
     },
     {
+        "merged": "com.qrphotoshare.app-merged_res-46:/layout_layout_auto_share_sheet.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/layout/layout_auto_share_sheet.xml"
+    },
+    {
         "merged": "com.qrphotoshare.app-merged_res-46:/color_material_personalized_color_primary_text.xml.flat",
         "source": "com.qrphotoshare.app-material-1.10.0-2:/color/material_personalized_color_primary_text.xml"
     },
@@ -2462,6 +2478,10 @@
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/color_material_on_primary_emphasis_medium.xml.flat",
         "source": "com.qrphotoshare.app-material-1.10.0-2:/color/material_on_primary_emphasis_medium.xml"
+    },
+    {
+        "merged": "com.qrphotoshare.app-merged_res-46:/drawable_ic_instagram.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/drawable/ic_instagram.xml"
     },
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/layout-sw600dp-v13_design_layout_snackbar.xml.flat",
@@ -3266,6 +3286,10 @@
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "com.qrphotoshare.app-core-1.12.0-0:/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "com.qrphotoshare.app-merged_res-46:/drawable_ic_whatsapp.xml.flat",
+        "source": "com.qrphotoshare.app-main-47:/drawable/ic_whatsapp.xml"
     },
     {
         "merged": "com.qrphotoshare.app-merged_res-46:/drawable_abc_ic_menu_paste_mtrl_am_alpha.xml.flat",

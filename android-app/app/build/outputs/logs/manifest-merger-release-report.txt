@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:48:9-56:20
+INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:56:9-64:20
 	android:grantUriPermissions
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:52:13-47
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:60:13-47
 	android:authorities
 		INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:50:13-64
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:58:13-64
 	android:exported
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:51:13-37
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:59:13-37
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:49:13-62
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:57:13-62
 manifest
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-60:12
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:1-68:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8b630676dd635c874c3c6198809ff4ac\transformed\jetified-viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [io.coil-kt:coil:2.4.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\efaa810d9e352f5e34c5f5242c8b57dd\transformed\jetified-coil-2.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [io.coil-kt:coil-base:2.4.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\6b9fd32b870b936a167056b24dd86a51\transformed\jetified-coil-base-2.4.0\AndroidManifest.xml:2:1-7:12
@@ -91,16 +91,40 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Sahani 
 		INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:2:11-69
+queries
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:4:5-10:15
+MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:35:5-51:15
+MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:35:5-51:15
+package#com.whatsapp
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:5:9-48
+	android:name
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:5:18-45
+package#com.instagram.android
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:6:9-57
+	android:name
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:6:18-54
+package#org.telegram.messenger
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:7:9-58
+	android:name
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:7:18-55
+package#com.facebook.orca
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:8:9-53
+	android:name
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:8:18-50
+package#com.snapchat.android
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:9:9-56
+	android:name
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:9:18-53
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:13:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8272d9c3cff384257f22047c2cdfa86c\transformed\jetified-play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:23:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8272d9c3cff384257f22047c2cdfa86c\transformed\jetified-play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:13:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:14:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8272d9c3cff384257f22047c2cdfa86c\transformed\jetified-play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:24:5-79
@@ -108,9 +132,9 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8e1040a64da5d71bebe8573b966c9a4f\transformed\work-runtime-2.7.0\AndroidManifest.xml:26:5-79
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8e1040a64da5d71bebe8573b966c9a4f\transformed\work-runtime-2.7.0\AndroidManifest.xml:26:5-79
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:14:22-76
 uses-permission#com.google.android.gms.permission.AD_ID
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:7:5-78
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:15:5-78
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\c249e282fe074157f3abef5727899cdd\transformed\jetified-play-services-ads-identifier-18.0.0\AndroidManifest.xml:23:5-79
@@ -118,30 +142,30 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\User
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8272d9c3cff384257f22047c2cdfa86c\transformed\jetified-play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\8272d9c3cff384257f22047c2cdfa86c\transformed\jetified-play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:26:5-79
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:7:22-76
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:15:22-76
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:11:5-107
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:19:5-107
 	android:maxSdkVersion
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:11:78-104
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:19:78-104
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:11:22-77
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:19:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:12:5-108
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:20:5-108
 	android:maxSdkVersion
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:12:79-105
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:20:79-105
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:12:22-78
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:20:22-78
 uses-permission#android.permission.READ_MEDIA_IMAGES
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:13:5-76
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:21:5-76
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:13:22-73
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:21:22-73
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:14:5-77
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:22:5-77
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:14:22-74
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:22:22-74
 application
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:16:5-58:19
-INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:16:5-58:19
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:24:5-66:19
+INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:24:5-66:19
 MERGED from [com.google.android.material:material:1.10.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\11b800cc538ae16367b2f449bfa4fa9b\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.10.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\11b800cc538ae16367b2f449bfa4fa9b\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\9b97fa0f84c9e293aa4a3e7f9f47cc48\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -185,61 +209,61 @@ MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\Sahani Niraj Kumar\.grad
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\04896654821cb6b33995b9ef1a5d6195\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:21:9-35
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:29:9-35
 	android:label
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:19:9-41
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:27:9-41
 	android:roundIcon
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:20:9-54
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:28:9-54
 	android:icon
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:18:9-43
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:26:9-43
 	android:allowBackup
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:17:9-35
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:25:9-35
 	android:theme
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:22:9-50
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:30:9-50
 	android:usesCleartextTraffic
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:23:9-45
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:31:9-45
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:26:9-28:69
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:34:9-36:69
 	android:value
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:28:13-67
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:36:13-67
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:27:13-69
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:35:13-69
 activity#com.qrphotoshare.SplashActivity
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:30:9-38:20
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:38:9-46:20
 	android:exported
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:32:13-36
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:40:13-36
 	android:theme
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:33:13-54
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:41:13-54
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:31:13-43
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:39:13-43
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:34:13-37:29
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:42:13-45:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:35:17-69
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:43:17-69
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:35:25-66
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:43:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:36:17-77
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:44:17-77
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:36:27-74
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:44:27-74
 activity#com.qrphotoshare.MainActivity
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:40:9-42:39
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:48:9-50:39
 	android:exported
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:42:13-36
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:50:13-36
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:41:13-41
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:49:13-41
 activity#com.qrphotoshare.ResultActivity
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:44:9-46:40
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:52:9-54:40
 	android:exported
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:46:13-37
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:54:13-37
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:45:13-43
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:53:13-43
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:53:13-55:54
+ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:61:13-63:54
 	android:resource
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:55:17-51
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:63:17-51
 	android:name
-		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:54:17-67
+		ADDED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml:62:17-67
 uses-sdk
 INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Sahani Niraj Kumar\Downloads\Download\QR PhotoShare\android-app\app\src\main\AndroidManifest.xml
@@ -405,8 +429,6 @@ REJECTED from [androidx.work:work-runtime:2.7.0] C:\Users\Sahani Niraj Kumar\.gr
 		ADDED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:32:9-28
 	android:name
 		ADDED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:31:9-65
-queries
-ADDED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:35:5-51:15
 intent#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+data:scheme:https
 ADDED from [com.google.android.gms:play-services-ads-lite:22.5.0] C:\Users\Sahani Niraj Kumar\.gradle\caches\transforms-3\36d3c656acd0fe5d5926a268c0e98d29\transformed\jetified-play-services-ads-lite-22.5.0\AndroidManifest.xml:38:9-44:18
 action#android.intent.action.VIEW
