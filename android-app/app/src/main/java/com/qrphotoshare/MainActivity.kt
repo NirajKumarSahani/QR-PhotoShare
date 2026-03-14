@@ -121,6 +121,9 @@ class MainActivity : AppCompatActivity() {
         val view = layoutInflater.inflate(R.layout.layout_auto_share_sheet, null)
         dialog.setContentView(view)
 
+        // Make the background transparent so rounded corners show correctly
+        (view.parent as View).setBackgroundColor(android.graphics.Color.TRANSPARENT)
+
         // Social Icons
         view.findViewById<android.widget.ImageButton>(R.id.ibAutoWhatsApp).setOnClickListener {
             autoShareAction = "WHATSAPP"
