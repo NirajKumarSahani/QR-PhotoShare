@@ -64,48 +64,57 @@ router.post('/', upload.array('photos', 50), async (req, res) => {
 
         console.log(`Available storage providers: ${providers.join(', ')}`);
 
-        // Upload each file to either Firebase Storage, AWS S3, or Local Disk in parallel
+        // Upload each file: Try Cloud (Firebase/S3) first, Fallback to Local
         const localUploadDir = path.join(uploadDir, sessionId);
-        const uploadPromises = req.files.map(async (file, index) => {
-            let storageProvider = providers[index % providers.length];
-            console.log(`Processing ${file.filename} via ${storageProvider}...`);
-            
-            let destFileName = `uploads/${sessionId}/${file.filename}`;
-            let fileStoragePath = destFileName; // default for cloud
+        const uploadPromises = req.files.map(async (file) => {
+            let storageProvider = '';
+            let fileStoragePath = `uploads/${sessionId}/${file.filename}`;
+            let success = false;
 
-            const uploadLocal = () => {
+            // 1. Try Firebase first
+            if (bucket && !success) {
+                try {
+                    await bucket.upload(file.path, {
+                        destination: fileStoragePath,
+                        metadata: { contentType: file.mimetype }
+                    });
+                    storageProvider = 'firebase';
+                    success = true;
+                    console.log(`Uploaded ${file.filename} to Firebase (Primary)`);
+                } catch (e) {
+                    console.warn(`Firebase upload failed for ${file.filename}, trying AWS...`);
+                }
+            }
+
+            // 2. Try AWS S3
+            if (s3Client && process.env.AWS_S3_BUCKET_NAME && !success) {
+                try {
+                    const fileStream = fs.createReadStream(file.path);
+                    const uploadParams = {
+                        Bucket: process.env.AWS_S3_BUCKET_NAME,
+                        Key: fileStoragePath,
+                        Body: fileStream,
+                        ContentType: file.mimetype
+                    };
+                    await s3Client.send(new PutObjectCommand(uploadParams));
+                    storageProvider = 'aws';
+                    success = true;
+                    console.log(`Uploaded ${file.filename} to AWS S3 (Primary)`);
+                } catch (e) {
+                    console.warn(`AWS S3 upload failed for ${file.filename}, falling back to local...`);
+                }
+            }
+
+            // 3. Fallback to Local Storage
+            if (!success) {
                 if (!fs.existsSync(localUploadDir)) {
                     fs.mkdirSync(localUploadDir, { recursive: true });
                 }
                 const newPath = path.join(localUploadDir, file.filename);
                 fs.copyFileSync(file.path, newPath);
-                return newPath;
-            };
-
-            try {
-                if (storageProvider === 'aws') {
-                    const fileStream = fs.createReadStream(file.path);
-                    const uploadParams = {
-                        Bucket: process.env.AWS_S3_BUCKET_NAME,
-                        Key: destFileName,
-                        Body: fileStream,
-                        ContentType: file.mimetype
-                    };
-                    await s3Client.send(new PutObjectCommand(uploadParams));
-                } else if (storageProvider === 'firebase') {
-                    await bucket.upload(file.path, {
-                        destination: destFileName,
-                        metadata: {
-                            contentType: file.mimetype,
-                        }
-                    });
-                } else {
-                    fileStoragePath = uploadLocal();
-                }
-            } catch (uploadError) {
-                console.warn(`Upload to ${storageProvider} failed for ${file.filename}, falling back to local:`, uploadError.message);
+                fileStoragePath = newPath;
                 storageProvider = 'local';
-                fileStoragePath = uploadLocal();
+                console.log(`Saved ${file.filename} to Local Storage (Secondary)`);
             }
 
             // Delete original temp file after successful processing (local copy already exists if fallback happened)
@@ -186,13 +195,13 @@ router.post('/', upload.array('photos', 50), async (req, res) => {
         if (req.files) {
             req.files.forEach(f => {
                 if (fs.existsSync(f.path)) {
-                    try { fs.unlinkSync(f.path); } catch(e) {}
+                    try { fs.unlinkSync(f.path); } catch (e) { }
                 }
             });
         }
-        res.status(500).json({ 
+        res.status(500).json({
             success: false,
-            error: error.message || 'Internal server error during upload.' 
+            error: error.message || 'Internal server error during upload.'
         });
     }
 });

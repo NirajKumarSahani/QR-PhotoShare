@@ -20,6 +20,11 @@ const downloadRoute = require('./routes/download');
 app.use('/api/upload', uploadRoute);
 app.use('/api/download', downloadRoute);
 
+// Health check / Keep-alive route
+app.get('/ping', (req, res) => {
+    res.send('pong');
+});
+
 // Serve the download page for any view links
 // e.g. /view/:fileId
 app.get('/view/:fileId', (req, res) => {
