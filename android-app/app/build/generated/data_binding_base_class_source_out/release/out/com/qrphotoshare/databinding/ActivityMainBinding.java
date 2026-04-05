@@ -30,9 +30,6 @@ public final class ActivityMainBinding implements ViewBinding {
   public final FrameLayout adContainerViewMiddle;
 
   @NonNull
-  public final FrameLayout adContainerViewTop;
-
-  @NonNull
   public final Button btnSelect;
 
   @NonNull
@@ -51,14 +48,12 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView tvSelectedInfo;
 
   private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull FrameLayout adContainerView,
-      @NonNull FrameLayout adContainerViewMiddle, @NonNull FrameLayout adContainerViewTop,
-      @NonNull Button btnSelect, @NonNull Button btnUpload, @NonNull ProgressBar progressBar,
-      @NonNull MaterialToolbar toolbar, @NonNull TextView tvProgress,
-      @NonNull TextView tvSelectedInfo) {
+      @NonNull FrameLayout adContainerViewMiddle, @NonNull Button btnSelect,
+      @NonNull Button btnUpload, @NonNull ProgressBar progressBar, @NonNull MaterialToolbar toolbar,
+      @NonNull TextView tvProgress, @NonNull TextView tvSelectedInfo) {
     this.rootView = rootView;
     this.adContainerView = adContainerView;
     this.adContainerViewMiddle = adContainerViewMiddle;
-    this.adContainerViewTop = adContainerViewTop;
     this.btnSelect = btnSelect;
     this.btnUpload = btnUpload;
     this.progressBar = progressBar;
@@ -106,12 +101,6 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.adContainerViewTop;
-      FrameLayout adContainerViewTop = ViewBindings.findChildViewById(rootView, id);
-      if (adContainerViewTop == null) {
-        break missingId;
-      }
-
       id = R.id.btnSelect;
       Button btnSelect = ViewBindings.findChildViewById(rootView, id);
       if (btnSelect == null) {
@@ -149,8 +138,8 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((LinearLayout) rootView, adContainerView,
-          adContainerViewMiddle, adContainerViewTop, btnSelect, btnUpload, progressBar, toolbar,
-          tvProgress, tvSelectedInfo);
+          adContainerViewMiddle, btnSelect, btnUpload, progressBar, toolbar, tvProgress,
+          tvSelectedInfo);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -17,13 +17,6 @@
         app:titleTextColor="@color/white"
         app:titleCentered="true" />
 
-    <!-- Top Ad Container -->
-    <FrameLayout
-        android:id="@+id/adContainerViewTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-
     <TextView
         android:id="@+id/tvSelectedInfo"
         android:layout_width="wrap_content"
@@ -32,6 +25,7 @@
         android:textColor="@color/white"
         android:alpha="0.8"
         android:textSize="16sp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp" />
 
     <Button

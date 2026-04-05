@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvProgress: TextView
     private lateinit var adContainerView: FrameLayout
     private lateinit var adContainerViewMiddle: FrameLayout
-    private lateinit var adContainerViewTop: FrameLayout
 
     private var selectedUris = listOf<Uri>()
     private val MAX_SIZE_BYTES = 150L * 1024 * 1024 // 150 MB
@@ -90,8 +89,8 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize AdMob
         MobileAds.initialize(this) {}
-        // loadBannerAd()
-        // loadInterstitialAd()
+        loadBannerAd()
+        loadInterstitialAd()
         checkAndRequestPermissions()
         createNotificationChannel()
 
@@ -225,15 +224,6 @@ class MainActivity : AppCompatActivity() {
     private fun loadBannerAd() {
         adContainerView = findViewById(R.id.adContainerView)
         adContainerViewMiddle = findViewById(R.id.adContainerViewMiddle)
-        adContainerViewTop = findViewById(R.id.adContainerViewTop)
-
-        // Top Ad
-        val adViewTop = AdView(this).apply {
-            setAdSize(AdSize.BANNER)
-            adUnitId = "ca-app-pub-8703883257933057/2072537369"
-        }
-        adContainerViewTop.addView(adViewTop)
-        adViewTop.loadAd(AdRequest.Builder().build())
 
         // Bottom Ad
         val adViewBottom = AdView(this).apply {

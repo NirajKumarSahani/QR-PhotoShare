@@ -3194,7 +3194,6 @@ id activity_chooser_view_content
 id adContainerView
 id adContainerViewMiddle
 id adContainerViewResult
-id adContainerViewTop
 id add
 id adjust_height
 id adjust_width

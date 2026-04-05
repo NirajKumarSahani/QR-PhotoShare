@@ -27163,19 +27163,9 @@ com.google.zxing.qrcode.encoder.MinimalEncoder$ResultList
 com.google.zxing.qrcode.encoder.MinimalEncoder$VersionSize
 com.google.zxing.qrcode.encoder.MinimalEncoder
 com.google.zxing.qrcode.encoder.QRCode
-com.qrphotoshare.MainActivity:
-    private android.widget.FrameLayout adContainerView
-    private android.widget.FrameLayout adContainerViewMiddle
-    private android.widget.FrameLayout adContainerViewTop
-    private com.google.android.gms.ads.AdView adView
-    private final void loadBannerAd()
 com.qrphotoshare.R$color
 com.qrphotoshare.R$drawable
 com.qrphotoshare.R$id:
-    public static int adContainerView
-    public static int adContainerViewMiddle
-    public static int adContainerViewResult
-    public static int adContainerViewTop
     public static int logo
     private void <init>()
 com.qrphotoshare.R$layout:
@@ -27189,9 +27179,6 @@ com.qrphotoshare.R$string
 com.qrphotoshare.R$style
 com.qrphotoshare.R$xml
 com.qrphotoshare.R
-com.qrphotoshare.ResultActivity:
-    private android.widget.FrameLayout adContainerViewResult
-    private final void loadBannerAd()
 com.qrphotoshare.databinding.ActivityMainBinding
 com.qrphotoshare.databinding.ActivityResultBinding
 com.qrphotoshare.databinding.ActivitySplashBinding
@@ -42050,7 +42037,6 @@ com.google.android.gms.ads.AdSize:
     public static final com.google.android.gms.ads.AdSize FULL_BANNER
     public static final com.google.android.gms.ads.AdSize LARGE_BANNER
     public static final com.google.android.gms.ads.AdSize LEADERBOARD
-    public static final com.google.android.gms.ads.AdSize MEDIUM_RECTANGLE
     public static final com.google.android.gms.ads.AdSize SEARCH
     public static final com.google.android.gms.ads.AdSize SMART_BANNER
     public static final com.google.android.gms.ads.AdSize WIDE_SKYSCRAPER
@@ -42081,7 +42067,6 @@ com.google.android.gms.ads.AdapterResponseInfo:
     public static java.lang.String getAdSourceName()
     public static com.google.android.gms.ads.AdapterResponseInfo zza(com.google.android.gms.ads.internal.client.zzu)
 com.google.android.gms.ads.BaseAdView:
-    public final void destroy()
     public abstract void pause()
     public abstract void resume()
 com.google.android.gms.ads.FullScreenContentCallback
@@ -57930,13 +57915,15 @@ com.qrphotoshare.MainActivity$uploadPhotos$progressRequestBody$1$$InternalSynthe
 com.qrphotoshare.MainActivity$uploadPhotos$progressRequestBody$1:
     public static void invoke$1()
 com.qrphotoshare.MainActivity:
+    public com.google.android.gms.ads.AdView adView
     public static final synthetic void access$setInterstitialAd$p()
     public static void checkAndRequestPermissions()
     public static void createNotificationChannel()
     public static java.lang.String formatBytes()
     public static java.lang.String getFileName()
     public static void handleSelectedUris()
-    public static void loadInterstitialAd()
+    public final void loadBannerAd()
+    public final void loadInterstitialAd()
     public static void navigateToResult()
     public static final void navigateToResult$doNav(com.qrphotoshare.MainActivity,java.lang.String,java.lang.String,java.lang.String)
     public static void openPrivacyPolicy()
@@ -57959,9 +57946,9 @@ com.qrphotoshare.ResultActivity$$InternalSyntheticLambda$1$efa0034a566df9c9a3b4b
 com.qrphotoshare.ResultActivity$$InternalSyntheticLambda$1$efa0034a566df9c9a3b4b65e123c5f8f48f092e867e09aa3e4111518082eb732$8
 com.qrphotoshare.ResultActivity$$InternalSyntheticLambda$1$efa0034a566df9c9a3b4b65e123c5f8f48f092e867e09aa3e4111518082eb732$9
 com.qrphotoshare.ResultActivity:
-    public final com.google.android.gms.ads.AdView adView
     public static final synthetic android.widget.TextView access$getTvExpiry$p()
     public static void executeAutoShare()
+    public final void loadBannerAd()
     public static void saveQrCode()
     public static void startCountdown()
 com.qrphotoshare.SplashActivity$$InternalSyntheticLambda$1$e5f58e26bffdeaa16047bcc191f8990036b69fbaf1347cc07ef47fb719cb20c3$0

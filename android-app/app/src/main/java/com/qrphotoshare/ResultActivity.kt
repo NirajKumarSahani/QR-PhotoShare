@@ -66,7 +66,7 @@ class ResultActivity : AppCompatActivity() {
         ibMessenger = findViewById(R.id.ibMessenger)
         ibSnapchat = findViewById(R.id.ibSnapchat)
 
-        // loadBannerAd()
+        loadBannerAd()
 
         val downloadUrlExtra = intent.getStringExtra("EXTRA_DOWNLOAD_URL") ?: ""
         this.downloadUrl = downloadUrlExtra

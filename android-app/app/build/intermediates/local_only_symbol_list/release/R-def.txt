@@ -25,7 +25,6 @@ id action_share
 id adContainerView
 id adContainerViewMiddle
 id adContainerViewResult
-id adContainerViewTop
 id btnAutoCopyLink
 id btnAutoShareLink
 id btnAutoShareQr
