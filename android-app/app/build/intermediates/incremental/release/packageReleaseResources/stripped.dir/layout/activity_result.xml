@@ -1,0 +1,175 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:background="@drawable/bg_gradient">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Success!"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scan to Download All Photos"
+        android:textColor="@color/white"
+        android:alpha="0.9"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp" />
+
+    <ImageView
+        android:id="@+id/ivQrCode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:scaleType="fitCenter"
+        android:background="#EEEEEE"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvExpiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expires in: 12:00:00"
+        android:textColor="#F44336"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/download_link"
+        android:textColor="@color/white"
+        android:alpha="0.8"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp">
+        
+        <TextView
+            android:id="@+id/tvLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="https://..."
+            android:padding="12dp"
+            android:background="#F5F5F5"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Copy"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Share Link"
+        android:backgroundTint="#2196F3"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnShareQr"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Share QR Code"
+        android:backgroundTint="#FF9800"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnSaveQr"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Download QR Code"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Social Share Icons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/ibWhatsApp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_whatsapp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/ibInstagram"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_instagram"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/ibTelegram"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_telegram"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/ibMessenger"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_messenger"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/ibSnapchat"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_snapchat"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <!-- AdMob Banner Container -->
+    <FrameLayout
+        android:id="@+id/adContainerViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        
+</LinearLayout>

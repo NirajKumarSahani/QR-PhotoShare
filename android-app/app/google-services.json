@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "445881634214",
+    "project_id": "qr-photoshare",
+    "storage_bucket": "qr-photoshare.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445881634214:android:c622a0eeea9a67d4975367",
+        "android_client_info": {
+          "package_name": "com.qrphotoshare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsCfOb4jk0G6tlQrDVgbmOerbing6P83A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

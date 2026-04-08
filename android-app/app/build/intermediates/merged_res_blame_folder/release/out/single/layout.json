@@ -1,22 +1,18 @@
 [
     {
-        "merged": "com.qrphotoshare.app-mergeReleaseResources-44:/layout/activity_main.xml",
-        "source": "com.qrphotoshare.app-main-47:/layout/activity_main.xml"
+        "merged": "com.qrphotoshare.app-mergeReleaseResources-47:/layout/activity_main.xml",
+        "source": "com.qrphotoshare.app-main-50:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-mergeReleaseResources-44:\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-main-47:\\layout\\activity_splash.xml"
+        "merged": "com.qrphotoshare.app-mergeReleaseResources-47:/layout/activity_result.xml",
+        "source": "com.qrphotoshare.app-main-50:/layout/activity_result.xml"
     },
     {
-        "merged": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-mergeReleaseResources-44:\\layout\\layout_auto_share_sheet.xml",
-        "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-main-47:\\layout\\layout_auto_share_sheet.xml"
+        "merged": "com.qrphotoshare.app-mergeReleaseResources-47:/layout/activity_splash.xml",
+        "source": "com.qrphotoshare.app-main-50:/layout/activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-mergeReleaseResources-44:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-main-47:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-mergeReleaseResources-44:\\layout\\activity_result.xml",
-        "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\daemon\\8.3\\com.qrphotoshare.app-main-47:\\layout\\activity_result.xml"
+        "merged": "com.qrphotoshare.app-mergeReleaseResources-47:/layout/layout_auto_share_sheet.xml",
+        "source": "com.qrphotoshare.app-main-50:/layout/layout_auto_share_sheet.xml"
     }
 ]

@@ -64,9 +64,15 @@ string app_name
 string copy
 string download_link
 string expires_in
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string menu_privacy
 string menu_rate
 string menu_share
+string project_id
 string select_photos
 string share
 string upload

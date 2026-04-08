@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.qrphotoshare.app-mergeReleaseResources-43:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.qrphotoshare.app-mergeReleaseResources-46:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\fb9f1e85f5f5392ab17532f952a407fd\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\9c943f7d744a7c62f9e95c7afba275e0\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\3b536009bb265140d066cf10e14e3298\\transformed\\appcompat-1.6.1\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\d54059c4c7704c5ca5dc46bed3587e83\\transformed\\appcompat-1.6.1\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\04896654821cb6b33995b9ef1a5d6195\\transformed\\core-1.12.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Sahani Niraj Kumar\\.gradle\\caches\\transforms-3\\0f5e51d758412553ca4b4f36a29090e8\\transformed\\core-1.12.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

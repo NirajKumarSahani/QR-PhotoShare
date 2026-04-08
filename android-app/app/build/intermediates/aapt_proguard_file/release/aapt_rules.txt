@@ -19,6 +19,11 @@
 -keep class com.google.android.gms.ads.MobileAdsInitProvider { <init>(); }
 -keep class com.google.android.gms.ads.OutOfContextTestingActivity { <init>(); }
 -keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementJobService { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+-keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
+-keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
 -keep class com.qrphotoshare.MainActivity { <init>(); }
 -keep class com.qrphotoshare.ResultActivity { <init>(); }
 -keep class com.qrphotoshare.SplashActivity { <init>(); }
