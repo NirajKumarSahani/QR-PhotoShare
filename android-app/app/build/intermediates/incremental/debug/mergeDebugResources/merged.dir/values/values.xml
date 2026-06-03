@@ -2043,6 +2043,11 @@
     <string name="fallback_menu_item_copy_link">Copy link</string>
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
+    <string name="gcm_defaultSenderId" translatable="false">445881634214</string>
+    <string name="google_api_key" translatable="false">AIzaSyAsCfOb4jk0G6tlQrDVgbmOerbing6P83A</string>
+    <string name="google_app_id" translatable="false">1:445881634214:android:c622a0eeea9a67d4975367</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAsCfOb4jk0G6tlQrDVgbmOerbing6P83A</string>
+    <string name="google_storage_bucket" translatable="false">qr-photoshare.firebasestorage.app</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="item_view_role_description">Tab</string>
@@ -2189,6 +2194,7 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="project_id" translatable="false">qr-photoshare</string>
     <string name="s1">Save image</string>
     <string name="s2">"Allow Ad to store image in Picture gallery?"</string>
     <string name="s3">Accept</string>

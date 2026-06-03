@@ -4,39 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - QR PhotoShare</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; color: #333; max-width: 800px; margin: 0 auto; }
-        h1 { color: #2196F3; }
-        h2 { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-top: 30px; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body>
-    <h1>Privacy Policy</h1>
-    <p>Last updated: March 13, 2026</p>
-    
-    <p>Welcome to <strong>QR PhotoShare</strong>. We value your privacy and are committed to protecting your personal data.</p>
-
-    <h2>1. Information We Collect</h2>
-    <p>We collect the photos you choose to upload for the purpose of sharing them via QR code. We do not collect names, email addresses, or phone numbers.</p>
-
-    <h2>2. How We Use Your Data</h2>
-    <p>Photos uploaded to our service are stored temporarily for 12 hours to allow others to download them. After 12 hours, photos are automatically deleted from our servers.</p>
-
-    <h2>3. Third-Party Services</h2>
-    <p>We use the following third-party services which may collect information used to identify you:</p>
-    <ul>
-        <li><strong>Google AdMob</strong>: For displaying advertisements. <a href="https://policies.google.com/privacy">Privacy Policy</a></li>
-        <li><strong>Render</strong>: For hosting our backend server.</li>
-        <li><strong>AWS S3</strong>: For secure temporary storage of photos.</li>
-    </ul>
-
-    <h2>4. Security</h2>
-    <p>We use industry-standard encryption (HTTPS) to protect your data during transfer. However, no method of transmission over the internet is 100% secure.</p>
-
-    <h2>5. Changes to This Policy</h2>
-    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
-
-    <h2>6. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, you can contact us at your-email@example.com.</p>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="/" class="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">QR PhotoShare</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-500 hover:text-blue-600 transition">Home</a>
+                    <a href="/about.html" class="text-gray-500 hover:text-blue-600 transition">About Us</a>
+                    <a href="/contact.html" class="text-gray-500 hover:text-blue-600 transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 prose prose-blue max-w-none">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+            <p class="text-gray-500 mb-6">Last updated: March 13, 2026</p>
+            <p>Welcome to <strong>QR PhotoShare</strong>. We value your privacy and are committed to protecting your personal data.</p>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">1. Information We Collect</h2>
+            <p>We collect the photos you choose to upload for the purpose of sharing them via QR code. We do not collect names, email addresses, or phone numbers.</p>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">2. How We Use Your Data</h2>
+            <p>Photos uploaded to our service are stored temporarily for 12 hours to allow others to download them. After 12 hours, photos are automatically deleted from our servers.</p>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">3. Third-Party Services</h2>
+            <p>We use the following third-party services which may collect information used to identify you:</p>
+            <ul class="list-disc pl-5 mb-4">
+                <li><strong>Google AdMob / AdSense</strong>: For displaying advertisements.</li>
+                <li><strong>Render</strong>: For hosting our backend server.</li>
+                <li><strong>AWS S3</strong>: For secure temporary storage of photos.</li>
+            </ul>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">4. Security</h2>
+            <p>We use industry-standard encryption (HTTPS) to protect your data during transfer. However, no method of transmission over the internet is 100% secure.</p>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">5. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+            
+            <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 border-b pb-2">6. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, you can contact us via our Contact page.</p>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 mt-auto pt-8 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-gray-400">&copy; 2026 QR PhotoShare. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
