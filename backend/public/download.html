@@ -35,7 +35,7 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         <!-- Left Column: Instructions & Content (For AdSense) -->
-        <div class="lg:col-span-2 space-y-8">
+        <div class="lg:col-span-2 space-y-8 order-last lg:order-first">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h1 class="text-3xl font-bold text-gray-900 mb-4">You've Received Photos!</h1>
                 <p class="text-lg text-gray-600 mb-6">
@@ -67,7 +67,7 @@
         </div>
 
         <!-- Right Column: The Download Card -->
-        <div class="lg:col-span-1">
+        <div class="lg:col-span-1 order-first lg:order-last">
             <div class="bg-white rounded-2xl shadow-xl w-full p-8 text-center sticky top-8" id="main-card">
                 
                 <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
